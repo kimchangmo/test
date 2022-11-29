@@ -215,7 +215,7 @@ while True:
 
 ############코인 롱 구매###############
             #if (30 > old_old_rsi) and (30 < old_rsi) and (30 < now_rsi) and (count_all_buy == 'true'):
-            if False:
+            if True:
                 for n in range(0, coin_buy_index):
                     #보유여부확인
                     positions = balance['info']['positions']
@@ -279,7 +279,7 @@ while True:
                             print('time :', now)
                             print('success buy coin(long) :', coin)
                             print('----------------------------------------------------')
-                            time.sleep(1)    
+                            time.sleep(1000)    
                             break
 
 ############코인 숏 구매############

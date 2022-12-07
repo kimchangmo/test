@@ -172,7 +172,7 @@ for n in range(0, coin_buy_index):
 
 
 
-while True:
+while False:
     i = 0
 
     #코인목록

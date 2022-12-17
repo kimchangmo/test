@@ -6,6 +6,10 @@
 #api키 : 9IcrYyV1ckCJMMrCLDoIUFNG77e86szaM0mW7jpO3evAHjLJXZfGORejbEmStRjh
 #비밀키 : sjZCJF5YRzPm5qaSy91IPjK7qz9a65VCfn7wmw0ji7AQJndPnUYZo8dLAjs2ceCt
 
+#테스트
+#api키 : kaja7VyYPh1WruVNG0FZHiNmJWl0yjQkMwEmJKzRnOrnc5ZuKIRNndAJf64OJX2p
+#비밀키 : tiPphpXRa0mGBzIM3Yw0hfepLUdDFQHxxj2w3jsUZxAn8JO2YBsJ5PMLsBHD2Nyw
+
 #참고 : 
 #pip install ccxt 
 #pip install binance-connector 
@@ -27,8 +31,8 @@ from binance.client import Client as r_Client
 import datetime as dt
 
 #키
-api_key = "Xe70g6uznpnBznhPBKPUBfY5pB52kvH0o7aqFiJsYN6ZxKtyxONAsMgNhI0JVOv6"
-secret  = "RMgRWgyHizGLqdF7P2wf8LeajnewCHMjMLLrDR5nL2651324ulQ0DotI6l5RqMJV"
+api_key = "kaja7VyYPh1WruVNG0FZHiNmJWl0yjQkMwEmJKzRnOrnc5ZuKIRNndAJf64OJX2p"
+secret  = "tiPphpXRa0mGBzIM3Yw0hfepLUdDFQHxxj2w3jsUZxAn8JO2YBsJ5PMLsBHD2Nyw"
 
 print('##################################Start############################################')
 
@@ -84,12 +88,11 @@ for m in markets:
         all_coin.append(new_m)
 
 #롱 and 숏 몇개 돌릴건지 설정
-#coin_buy_index = 1
-coin_buy_index = 20
+coin_buy_index = 15
 #분봉 +2
 delay_time = 32
 #보유머니의 1/n시작
-nmoney = 400
+nmoney = 300
 #배율
 all_leverage = 5
 
@@ -101,79 +104,9 @@ for n in range(0, coin_buy_index):
 
 
 
-
-
-# coin = 'RAYUSDT'
-# print('코인:', coin)
-
-
-# #########최대 구매량 구하는 공식###########
-# client = r_Client(api_key=api_key, api_secret=secret)
-# info = client.futures_exchange_info()
-# maxQty = [coin]
-# maxQty = {si['symbol']:si['filters'] for si in info['symbols'] if si['symbol'] in maxQty}
-# maxQty = maxQty[coin]
-# maxQty = maxQty[2]
-# maxQty = float(maxQty['maxQty'])
-# print('최대구매량:', maxQty)
-# print('코인가격:', float(client.futures_symbol_ticker(symbol=coin)['price']))
-
-
-# #########구매량 계산#########
-# balance = binance.fetch_balance(params={"type": "future"})
-# first_buy_money = balance['USDT']['free'] + balance['USDT']['used']
-# first_buy_money = int(first_buy_money/nmoney)
-# purchasing_volume = first_buy_money*all_leverage/float(client.futures_symbol_ticker(symbol=coin)['price'])
-
-
-# #물타기 성공 횟수(테스트용)
-# n = 0
-# #몇번 나눠서 구매해야 하는지 변수 > 최초 구매시 초기화 하고 물타기시엔 초기화 X
-# Number_of_Divisions = 1
-
-# while True:
-#     if maxQty > purchasing_volume :
-#         #구매
-#         # client.futures_create_order(
-#         #     symbol=coin, side='BUY',
-#         #     positionSide = 'LONG', type='MARKET', quantity=round(globals()['buy_money_{}'.format(n)],decimal_point)
-#         # )
-#         print('구매량:', purchasing_volume)
-#         print('물타기 ', n, '번째 성공')
-#         print('-----------------------------------------')
-#         purchasing_volume = purchasing_volume*2
-#         divisions_purchasing_volume = purchasing_volume
-#         n = n+1
-#     else :
-#         for x in range(0, Number_of_Divisions):
-#             #최대수량보다 구매수량이 클 경우 나눌 횟수 계산
-#             if maxQty < divisions_purchasing_volume :
-#                 Number_of_Divisions = Number_of_Divisions*2
-#                 print(Number_of_Divisions, '번 나눔')
-#                 divisions_purchasing_volume = purchasing_volume/Number_of_Divisions
-#                 print(Number_of_Divisions, '번 나눈 구매량:', divisions_purchasing_volume)
-#                 print('-----------------------------------------')
-#             else :
-#                 #구매
-#                 # client.futures_create_order(
-#                 #     symbol=coin, side='BUY',
-#                 #     positionSide = 'LONG', type='MARKET', quantity=round(globals()['buy_money_{}'.format(n)],decimal_point)
-#                 # )
-#                 print('구매량:', purchasing_volume)
-#                 print(divisions_purchasing_volume, '의 수량으로 ', Number_of_Divisions, '번 나눠 구매 성공')
-#                 print('물타기 ', n, '번째 성공')
-#                 print('-----------------------------------------')
-#                 purchasing_volume = purchasing_volume*2
-#                 divisions_purchasing_volume = purchasing_volume
-#                 n = n+1
-#                 break
-    
-#     time.sleep(3)
-
-
-
-while False:
+while True:
     i = 0
+    print('In operation Time : ', dt.datetime.now())
 
     #코인목록
     all_coin = []
@@ -214,8 +147,8 @@ while False:
 
 
 ############코인 롱 구매###############
-            #if (30 > old_old_rsi) and (30 < old_rsi) and (30 < now_rsi) and (count_all_buy == 'true'):
-            if True:
+            if (30 > old_old_rsi) and (30 < old_rsi) and (30 < now_rsi) and (count_all_buy == 'true'):
+            #if (70 > old_old_rsi) and (70 < old_rsi) and (70 < now_rsi) and (count_all_buy == 'true'):
                 for n in range(0, coin_buy_index):
                     #보유여부확인
                     positions = balance['info']['positions']
@@ -279,12 +212,12 @@ while False:
                             print('time :', now)
                             print('success buy coin(long) :', coin)
                             print('----------------------------------------------------')
-                            time.sleep(1000)    
+                            time.sleep(1)    
                             break
 
 ############코인 숏 구매############
-            #if (70 < old_old_rsi) and (70 > old_rsi) and (70 > now_rsi) and (count_all_sell == 'true'):
-            if False:
+            if (70 < old_old_rsi) and (70 > old_rsi) and (70 > now_rsi) and (count_all_sell == 'true'):
+            #if (30 < old_old_rsi) and (30 > old_rsi) and (30 > now_rsi) and (count_all_sell == 'true'):
                 for n in range(0, coin_buy_index):
                     #보유여부확인
                     positions = balance['info']['positions']
@@ -392,36 +325,47 @@ while False:
                                 symbol=globals()['buycoin_buy_{}'.format(n)], side='SELL',
                                 positionSide = 'LONG', type='MARKET', quantity=round(globals()['old_plus_buy_{}'.format(n)],decimal_point)
                             )
+
+                            print('time :', now)
+                            print('success sell coin(long) :', globals()['buycoin_buy_{}'.format(n)])
+                            print('----------------------------------------------------')
+                            globals()['count_buy_{}'.format(n)] = 'true'
+                            time.sleep(1)  
                         else :
                             print('#########DIVISION SELL TRY###########')
                             while True:
-                                #최대수량보다 구매수량이 클 경우 나눌 횟수 계산
-                                if maxQty < divisions_purchasing_volume :
-                                    number_of_divisions = number_of_divisions*2
-                                    divisions_purchasing_volume = globals()['old_plus_buy_{}'.format(n)]/number_of_divisions
-                                else :
-                                    for j in range(0, number_of_divisions):
-                                        #판매
-                                        client.futures_create_order(
-                                            symbol=globals()['buycoin_buy_{}'.format(n)], side='SELL',
-                                            positionSide = 'LONG', type='MARKET', quantity=round(divisions_purchasing_volume,decimal_point)
-                                        )
-                                        time.sleep(1)
-                                    break
+                                try:
+                                    #최대수량보다 구매수량이 클 경우 나눌 횟수 계산
+                                    if maxQty < divisions_purchasing_volume :
+                                        number_of_divisions = number_of_divisions + 1
+                                        divisions_purchasing_volume = globals()['old_plus_buy_{}'.format(n)]/number_of_divisions
+                                    else :
+                                        for j in range(0, number_of_divisions):
+                                            #판매
+                                            client.futures_create_order(
+                                                symbol=globals()['buycoin_buy_{}'.format(n)], side='SELL',
+                                                positionSide = 'LONG', type='MARKET', quantity=round(divisions_purchasing_volume,decimal_point)
+                                            )
+                                            print('division sell : ', j)
+                                            time.sleep(1)
 
-                        print('time :', now)
-                        print('success sell coin(long) :', globals()['buycoin_buy_{}'.format(n)])
-                        print('----------------------------------------------------')
-                        globals()['count_buy_{}'.format(n)] = 'true'
-                        time.sleep(1)    
+                                        print('time :', now)
+                                        print('success sell coin(long) :', globals()['buycoin_buy_{}'.format(n)])
+                                        print('----------------------------------------------------')
+                                        globals()['count_buy_{}'.format(n)] = 'true'
+                                        time.sleep(1)  
+                                        break
+                                except Exception as e:
+                                    print(e)
+                                    time.sleep(2)  
+                                    break
 
                     now_rsi = float(rsi(globals()['buycoin_buy_{}'.format(n)]).iloc[-1])
                     old_rsi = float(rsi(globals()['buycoin_buy_{}'.format(n)]).iloc[-2])
                     old_old_rsi = float(rsi(globals()['buycoin_buy_{}'.format(n)]).iloc[-3])
                         
 ############물타기(롱)############
-                    #if (30 > old_old_rsi) and (30 < old_rsi) and (30 < now_rsi) and (now > globals()['buytime_buy_{}'.format(n)]) and ((float(globals()['last_current_price_buy_{}'.format(n)]) * float(globals()['increase_water_buy_{}'.format(n)])) > globals()['current_price_buy_{}'.format(n)]):
-                    if False:
+                    if (30 > old_old_rsi) and (30 < old_rsi) and (30 < now_rsi) and (now > globals()['buytime_buy_{}'.format(n)]) and ((float(globals()['last_current_price_buy_{}'.format(n)]) * float(globals()['increase_water_buy_{}'.format(n)])) > globals()['current_price_buy_{}'.format(n)]):
                         #선물잔고조회
                         balance = binance.fetch_balance(params={"type": "future"})
                         
@@ -456,54 +400,91 @@ while False:
                                     symbol=globals()['buycoin_buy_{}'.format(n)], side='BUY',
                                     positionSide = 'LONG', type='MARKET', quantity=round(globals()['buy_money_buy_{}'.format(n)]*2,decimal_point)
                                 )
+
+                                #구매시간 갱신
+                                globals()['buytime_buy_{}'.format(n)] = dt.datetime.now() + dt.timedelta(minutes=delay_time)
+                                #물타기가격 갱신(2배)
+                                globals()['old_buy_money_buy_{}'.format(n)] = globals()['buy_money_buy_{}'.format(n)]
+                                globals()['buy_money_buy_{}'.format(n)] = float(globals()['buy_money_buy_{}'.format(n)])*2
+                                globals()['current_price_buy_{}'.format(n)] = client.futures_symbol_ticker(symbol=globals()['buycoin_buy_{}'.format(n)])
+                                globals()['current_price_buy_{}'.format(n)] = float(globals()['current_price_buy_{}'.format(n)]['price'])
+                                globals()['last_current_price_buy_{}'.format(n)] = globals()['current_price_buy_{}'.format(n)]
+
+                                #총 매수량
+                                balance = binance.fetch_balance(params={"type": "future"})
+                                positions = balance['info']['positions']
+                                for position in positions:
+                                    if (position["symbol"] == globals()['buycoin_buy_{}'.format(n)]) and (position["positionSide"] == "LONG"):
+                                        entry = position['entryPrice']
+                                        positionAmt = position['positionAmt']
+                                        print('entry',entry)
+                                        print('positionAmt',positionAmt)
+                                        break
+
+                                globals()['water_buy_price_buy_{}'.format(n)] = float(entry)
+                                globals()['old_plus_buy_{}'.format(n)] = float(positionAmt)
+                                #물타기 점진적 증가 값
+                                globals()['increase_water_buy_{}'.format(n)] = float(globals()['increase_water_buy_{}'.format(n)])-0.05
+                                print('time :', now)
+                                print('success water coin(long) :', globals()['buycoin_buy_{}'.format(n)])
+                                print('old_old_rsi(long)', old_old_rsi)
+                                print('old_rsi(long)', old_rsi)
+                                print('----------------------------------------------------')
+                                time.sleep(1)  
                             else :
                                 divisions_purchasing_volume_buy = globals()['buy_money_buy_{}'.format(n)]*2
                                 number_of_divisions_buy = 1
                                 while True:
-                                    #최대수량보다 구매수량이 클 경우 나눌 횟수 계산
-                                    if maxQty < divisions_purchasing_volume_buy :
-                                        number_of_divisions_buy = number_of_divisions_buy*2
-                                        divisions_purchasing_volume_buy = (globals()['buy_money_buy_{}'.format(n)]*2)/number_of_divisions_buy
-                                    else :
-                                        for j in range(0, number_of_divisions_buy):
-                                            #구매
-                                            client.futures_create_order(
-                                                symbol=globals()['buycoin_buy_{}'.format(n)], side='BUY',
-                                                positionSide = 'LONG', type='MARKET', quantity=round(divisions_purchasing_volume_buy,decimal_point)
-                                            )
-                                            time.sleep(1)
+                                    try:
+                                        #최대수량보다 구매수량이 클 경우 나눌 횟수 계산
+                                        if maxQty < divisions_purchasing_volume_buy :
+                                            number_of_divisions_buy = number_of_divisions_buy + 1
+                                            divisions_purchasing_volume_buy = (globals()['buy_money_buy_{}'.format(n)]*2)/number_of_divisions_buy
+                                        else :
+                                            for j in range(0, number_of_divisions_buy):
+                                                #구매
+                                                client.futures_create_order(
+                                                    symbol=globals()['buycoin_buy_{}'.format(n)], side='BUY',
+                                                    positionSide = 'LONG', type='MARKET', quantity=round(divisions_purchasing_volume_buy,decimal_point)
+                                                )
+                                                print('division buy : ', j)
+                                                time.sleep(1)
+
+                                            #구매시간 갱신
+                                            globals()['buytime_buy_{}'.format(n)] = dt.datetime.now() + dt.timedelta(minutes=delay_time)
+                                            #물타기가격 갱신(2배)
+                                            globals()['old_buy_money_buy_{}'.format(n)] = globals()['buy_money_buy_{}'.format(n)]
+                                            globals()['buy_money_buy_{}'.format(n)] = float(globals()['buy_money_buy_{}'.format(n)])*2
+                                            globals()['current_price_buy_{}'.format(n)] = client.futures_symbol_ticker(symbol=globals()['buycoin_buy_{}'.format(n)])
+                                            globals()['current_price_buy_{}'.format(n)] = float(globals()['current_price_buy_{}'.format(n)]['price'])
+                                            globals()['last_current_price_buy_{}'.format(n)] = globals()['current_price_buy_{}'.format(n)]
+
+                                            #총 매수량
+                                            balance = binance.fetch_balance(params={"type": "future"})
+                                            positions = balance['info']['positions']
+                                            for position in positions:
+                                                if (position["symbol"] == globals()['buycoin_buy_{}'.format(n)]) and (position["positionSide"] == "LONG"):
+                                                    entry = position['entryPrice']
+                                                    positionAmt = position['positionAmt']
+                                                    print('entry',entry)
+                                                    print('positionAmt',positionAmt)
+                                                    break
+
+                                            globals()['water_buy_price_buy_{}'.format(n)] = float(entry)
+                                            globals()['old_plus_buy_{}'.format(n)] = float(positionAmt)
+                                            #물타기 점진적 증가 값
+                                            globals()['increase_water_buy_{}'.format(n)] = float(globals()['increase_water_buy_{}'.format(n)])-0.05
+                                            print('time :', now)
+                                            print('success water coin(long) :', globals()['buycoin_buy_{}'.format(n)])
+                                            print('old_old_rsi(long)', old_old_rsi)
+                                            print('old_rsi(long)', old_rsi)
+                                            print('----------------------------------------------------')
+                                            time.sleep(1)  
+                                            break
+                                    except Exception as e:
+                                        print(e)
+                                        time.sleep(2)  
                                         break
-
-                            #구매시간 갱신
-                            globals()['buytime_buy_{}'.format(n)] = dt.datetime.now() + dt.timedelta(minutes=delay_time)
-                            #물타기가격 갱신(2배)
-                            globals()['old_buy_money_buy_{}'.format(n)] = globals()['buy_money_buy_{}'.format(n)]
-                            globals()['buy_money_buy_{}'.format(n)] = float(globals()['buy_money_buy_{}'.format(n)])*2
-                            globals()['current_price_buy_{}'.format(n)] = client.futures_symbol_ticker(symbol=globals()['buycoin_buy_{}'.format(n)])
-                            globals()['current_price_buy_{}'.format(n)] = float(globals()['current_price_buy_{}'.format(n)]['price'])
-                            globals()['last_current_price_buy_{}'.format(n)] = globals()['current_price_buy_{}'.format(n)]
-
-                            #총 매수량
-                            balance = binance.fetch_balance(params={"type": "future"})
-                            positions = balance['info']['positions']
-                            for position in positions:
-                                if (position["symbol"] == globals()['buycoin_buy_{}'.format(n)]) and (position["positionSide"] == "LONG"):
-                                    entry = position['entryPrice']
-                                    positionAmt = position['positionAmt']
-                                    print('entry',entry)
-                                    print('positionAmt',positionAmt)
-                                    break
-
-                            globals()['water_buy_price_buy_{}'.format(n)] = float(entry)
-                            globals()['old_plus_buy_{}'.format(n)] = float(positionAmt)
-                            #물타기 점진적 증가 값
-                            globals()['increase_water_buy_{}'.format(n)] = float(globals()['increase_water_buy_{}'.format(n)])-0.05
-                            print('time :', now)
-                            print('success water coin(long) :', globals()['buycoin_buy_{}'.format(n)])
-                            print('old_old_rsi(long)', old_old_rsi)
-                            print('old_rsi(long)', old_rsi)
-                            print('----------------------------------------------------')
-                            time.sleep(1)    
                             
                 
                 if (globals()['count_sell_{}'.format(n)] == 'false'):
@@ -540,38 +521,49 @@ while False:
                                 symbol=globals()['buycoin_sell_{}'.format(n)], side='BUY',
                                 positionSide = 'SHORT', type='MARKET', quantity=round(globals()['old_plus_sell_{}'.format(n)],decimal_point)
                             )
+
+                            print('time :', now)
+                            print('success sell coin(short) :', globals()['buycoin_sell_{}'.format(n)])
+                            print('----------------------------------------------------')
+                            globals()['count_sell_{}'.format(n)] = 'true'  
+                            time.sleep(1)    
                         else :
                             print('#########DIVISION SELL TRY###########')
                             while True:
-                                #최대수량보다 구매수량이 클 경우 나눌 횟수 계산
-                                if maxQty < divisions_purchasing_volume :
-                                    number_of_divisions = number_of_divisions*2
-                                    divisions_purchasing_volume = globals()['old_plus_sell_{}'.format(n)]/number_of_divisions
-                                    print(number_of_divisions)
-                                    print(divisions_purchasing_volume)
-                                else :
-                                    for j in range(0, number_of_divisions):
-                                        #판매
-                                        client.futures_create_order(
-                                            symbol=globals()['buycoin_sell_{}'.format(n)], side='BUY',
-                                            positionSide = 'SHORT', type='MARKET', quantity=round(divisions_purchasing_volume,decimal_point)
-                                        )
-                                        time.sleep(1)
-                                    break
+                                try:
+                                    #최대수량보다 구매수량이 클 경우 나눌 횟수 계산
+                                    if maxQty < divisions_purchasing_volume :
+                                        number_of_divisions = number_of_divisions + 1
+                                        divisions_purchasing_volume = globals()['old_plus_sell_{}'.format(n)]/number_of_divisions
+                                        print(number_of_divisions)
+                                        print(divisions_purchasing_volume)
+                                    else :
+                                        for j in range(0, number_of_divisions):
+                                            #판매
+                                            client.futures_create_order(
+                                                symbol=globals()['buycoin_sell_{}'.format(n)], side='BUY',
+                                                positionSide = 'SHORT', type='MARKET', quantity=round(divisions_purchasing_volume,decimal_point)
+                                            )
+                                            print('division buy : ', j)
+                                            time.sleep(1)
 
-                        print('time :', now)
-                        print('success sell coin(short) :', globals()['buycoin_sell_{}'.format(n)])
-                        print('----------------------------------------------------')
-                        globals()['count_sell_{}'.format(n)] = 'true'  
-                        time.sleep(1)    
+                                        print('time :', now)
+                                        print('success sell coin(short) :', globals()['buycoin_sell_{}'.format(n)])
+                                        print('----------------------------------------------------')
+                                        globals()['count_sell_{}'.format(n)] = 'true'  
+                                        time.sleep(1)  
+                                        break
+                                except Exception as e:
+                                    print(e)
+                                    time.sleep(2)  
+                                    break
 
                     now_rsi = float(rsi(globals()['buycoin_sell_{}'.format(n)]).iloc[-1])
                     old_rsi = float(rsi(globals()['buycoin_sell_{}'.format(n)]).iloc[-2])
                     old_old_rsi = float(rsi(globals()['buycoin_sell_{}'.format(n)]).iloc[-3])
 
 ############물타기(숏)############
-                    #if (70 < old_old_rsi) and (70 > old_rsi) and (70 > now_rsi) and (now > globals()['buytime_sell_{}'.format(n)]) and ((float(globals()['last_current_price_sell_{}'.format(n)]) * float(globals()['increase_water_sell_{}'.format(n)])) < globals()['current_price_sell_{}'.format(n)]):
-                    if False:
+                    if (70 < old_old_rsi) and (70 > old_rsi) and (70 > now_rsi) and (now > globals()['buytime_sell_{}'.format(n)]) and ((float(globals()['last_current_price_sell_{}'.format(n)]) * float(globals()['increase_water_sell_{}'.format(n)])) < globals()['current_price_sell_{}'.format(n)]):
                         #선물잔고조회
                         balance = binance.fetch_balance(params={"type": "future"})
                         
@@ -604,54 +596,91 @@ while False:
                                     symbol=globals()['buycoin_sell_{}'.format(n)], side='SELL',
                                     positionSide = 'SHORT', type='MARKET', quantity=round(globals()['buy_money_sell_{}'.format(n)]*2,decimal_point)
                                 )
+
+                                #구매시간 갱신
+                                globals()['buytime_sell_{}'.format(n)] = dt.datetime.now() + dt.timedelta(minutes=delay_time)
+                                #물타기가격 갱신(2배)
+                                globals()['old_buy_money_sell_{}'.format(n)] = globals()['buy_money_sell_{}'.format(n)]
+                                globals()['buy_money_sell_{}'.format(n)] = globals()['buy_money_sell_{}'.format(n)]*2
+                                globals()['current_price_sell_{}'.format(n)] = client.futures_symbol_ticker(symbol=globals()['buycoin_sell_{}'.format(n)])
+                                globals()['current_price_sell_{}'.format(n)] = float(globals()['current_price_sell_{}'.format(n)]['price'])
+                                globals()['last_current_price_sell_{}'.format(n)] = globals()['current_price_sell_{}'.format(n)]
+
+                                #총 매수량
+                                balance = binance.fetch_balance(params={"type": "future"})
+                                positions = balance['info']['positions']
+                                for position in positions:
+                                    if (position["symbol"] == globals()['buycoin_sell_{}'.format(n)]) and (position["positionSide"] == "SHORT"):
+                                        entry = position['entryPrice']
+                                        positionAmt = -float(position['positionAmt'])
+                                        print('entry',position['entryPrice'])
+                                        print('positionAmt',positionAmt)
+                                        break
+                                
+                                globals()['water_buy_price_sell_{}'.format(n)] = float(entry)
+                                globals()['old_plus_sell_{}'.format(n)] = positionAmt
+                                #물타기 점진적 증가 값
+                                globals()['increase_water_sell_{}'.format(n)] = float(globals()['increase_water_sell_{}'.format(n)])+0.05
+                                print('time :', now)
+                                print('success water coin(short) :', globals()['buycoin_sell_{}'.format(n)])
+                                print('old_old_rsi(short)', old_old_rsi)
+                                print('old_rsi(short)', old_rsi)
+                                print('----------------------------------------------------')
+                                time.sleep(1) 
                             else :
                                 divisions_purchasing_volume_sell = globals()['buy_money_sell_{}'.format(n)]*2
                                 number_of_divisions_sell = 1
                                 while True:
-                                    #최대수량보다 구매수량이 클 경우 나눌 횟수 계산
-                                    if maxQty < divisions_purchasing_volume_sell :
-                                        number_of_divisions_sell = number_of_divisions_sell*2
-                                        divisions_purchasing_volume_sell = (globals()['buy_money_sell_{}'.format(n)]*2)/number_of_divisions_sell
-                                    else :
-                                        for j in range(0, number_of_divisions_sell):
-                                            #구매
-                                            client.futures_create_order(
-                                                symbol=globals()['buycoin_sell_{}'.format(n)], side='SELL',
-                                                positionSide = 'SHORT', type='MARKET', quantity=round(divisions_purchasing_volume_sell,decimal_point)
-                                            )
-                                            time.sleep(1)
+                                    try:
+                                        #최대수량보다 구매수량이 클 경우 나눌 횟수 계산
+                                        if maxQty < divisions_purchasing_volume_sell :
+                                            number_of_divisions_sell = number_of_divisions_sell + 1
+                                            divisions_purchasing_volume_sell = (globals()['buy_money_sell_{}'.format(n)]*2)/number_of_divisions_sell
+                                        else :
+                                            for j in range(0, number_of_divisions_sell):
+                                                #구매
+                                                client.futures_create_order(
+                                                    symbol=globals()['buycoin_sell_{}'.format(n)], side='SELL',
+                                                    positionSide = 'SHORT', type='MARKET', quantity=round(divisions_purchasing_volume_sell,decimal_point)
+                                                )
+                                                print('division buy : ', j)
+                                                time.sleep(1)
+
+                                            #구매시간 갱신
+                                            globals()['buytime_sell_{}'.format(n)] = dt.datetime.now() + dt.timedelta(minutes=delay_time)
+                                            #물타기가격 갱신(2배)
+                                            globals()['old_buy_money_sell_{}'.format(n)] = globals()['buy_money_sell_{}'.format(n)]
+                                            globals()['buy_money_sell_{}'.format(n)] = globals()['buy_money_sell_{}'.format(n)]*2
+                                            globals()['current_price_sell_{}'.format(n)] = client.futures_symbol_ticker(symbol=globals()['buycoin_sell_{}'.format(n)])
+                                            globals()['current_price_sell_{}'.format(n)] = float(globals()['current_price_sell_{}'.format(n)]['price'])
+                                            globals()['last_current_price_sell_{}'.format(n)] = globals()['current_price_sell_{}'.format(n)]
+
+                                            #총 매수량
+                                            balance = binance.fetch_balance(params={"type": "future"})
+                                            positions = balance['info']['positions']
+                                            for position in positions:
+                                                if (position["symbol"] == globals()['buycoin_sell_{}'.format(n)]) and (position["positionSide"] == "SHORT"):
+                                                    entry = position['entryPrice']
+                                                    positionAmt = -float(position['positionAmt'])
+                                                    print('entry',position['entryPrice'])
+                                                    print('positionAmt',positionAmt)
+                                                    break
+                                            
+                                            globals()['water_buy_price_sell_{}'.format(n)] = float(entry)
+                                            globals()['old_plus_sell_{}'.format(n)] = positionAmt
+                                            #물타기 점진적 증가 값
+                                            globals()['increase_water_sell_{}'.format(n)] = float(globals()['increase_water_sell_{}'.format(n)])+0.05
+                                            print('time :', now)
+                                            print('success water coin(short) :', globals()['buycoin_sell_{}'.format(n)])
+                                            print('old_old_rsi(short)', old_old_rsi)
+                                            print('old_rsi(short)', old_rsi)
+                                            print('----------------------------------------------------')
+                                            time.sleep(1) 
+                                            break
+                                    except Exception as e:
+                                        print(e)
+                                        time.sleep(2)   
                                         break
-
-                            #구매시간 갱신
-                            globals()['buytime_sell_{}'.format(n)] = dt.datetime.now() + dt.timedelta(minutes=delay_time)
-                            #물타기가격 갱신(2배)
-                            globals()['old_buy_money_sell_{}'.format(n)] = globals()['buy_money_sell_{}'.format(n)]
-                            globals()['buy_money_sell_{}'.format(n)] = globals()['buy_money_sell_{}'.format(n)]*2
-                            globals()['current_price_sell_{}'.format(n)] = client.futures_symbol_ticker(symbol=globals()['buycoin_sell_{}'.format(n)])
-                            globals()['current_price_sell_{}'.format(n)] = float(globals()['current_price_sell_{}'.format(n)]['price'])
-                            globals()['last_current_price_sell_{}'.format(n)] = globals()['current_price_sell_{}'.format(n)]
-
-                            #총 매수량
-                            balance = binance.fetch_balance(params={"type": "future"})
-                            positions = balance['info']['positions']
-                            for position in positions:
-                                if (position["symbol"] == globals()['buycoin_sell_{}'.format(n)]) and (position["positionSide"] == "SHORT"):
-                                    entry = position['entryPrice']
-                                    positionAmt = -float(position['positionAmt'])
-                                    print('entry',position['entryPrice'])
-                                    print('positionAmt',positionAmt)
-                                    break
-                            
-                            globals()['water_buy_price_sell_{}'.format(n)] = float(entry)
-                            globals()['old_plus_sell_{}'.format(n)] = positionAmt
-                            #물타기 점진적 증가 값
-                            globals()['increase_water_sell_{}'.format(n)] = float(globals()['increase_water_sell_{}'.format(n)])+0.05
-                            print('time :', now)
-                            print('success water coin(short) :', globals()['buycoin_sell_{}'.format(n)])
-                            print('old_old_rsi(short)', old_old_rsi)
-                            print('old_rsi(short)', old_rsi)
-                            print('----------------------------------------------------')
-                            time.sleep(1)    
   
                 time.sleep(1)
         except Exception as e:

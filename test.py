@@ -88,11 +88,11 @@ for m in markets:
         all_coin.append(new_m)
 
 #롱 and 숏 몇개 돌릴건지 설정
-coin_buy_index = 15
+coin_buy_index = 5
 #분봉 +2
 delay_time = 32
 #보유머니의 1/n시작
-nmoney = 300
+nmoney = 100
 #배율
 all_leverage = 5
 
@@ -147,7 +147,7 @@ while True:
 
 
 ############코인 롱 구매###############
-            if (30 > old_old_rsi) and (30 < old_rsi) and (30 < now_rsi) and (count_all_buy == 'true'):
+            if (70 < old_old_rsi) and (70 > old_rsi) and (70 > now_rsi) and (count_all_buy == 'true'):
             #if (70 > old_old_rsi) and (70 < old_rsi) and (70 < now_rsi) and (count_all_buy == 'true'):
                 for n in range(0, coin_buy_index):
                     #보유여부확인
@@ -216,7 +216,7 @@ while True:
                             break
 
 ############코인 숏 구매############
-            if (70 < old_old_rsi) and (70 > old_rsi) and (70 > now_rsi) and (count_all_sell == 'true'):
+            if (30 > old_old_rsi) and (30 < old_rsi) and (30 < now_rsi) and (count_all_sell == 'true'):
             #if (30 < old_old_rsi) and (30 > old_rsi) and (30 > now_rsi) and (count_all_sell == 'true'):
                 for n in range(0, coin_buy_index):
                     #보유여부확인
@@ -297,8 +297,8 @@ while True:
                     globals()['current_price_buy_{}'.format(n)] = client.futures_symbol_ticker(symbol=globals()['buycoin_buy_{}'.format(n)])
                     globals()['current_price_buy_{}'.format(n)] = float(globals()['current_price_buy_{}'.format(n)]['price'])
                     
-####################1퍼 익절(롱)####################
-                    if ((float(globals()['water_buy_price_buy_{}'.format(n)]) * 1.01) < globals()['current_price_buy_{}'.format(n)]) :
+####################2퍼 익절(롱)####################
+                    if ((float(globals()['water_buy_price_buy_{}'.format(n)]) * 1.02) < globals()['current_price_buy_{}'.format(n)]) :
 
                         #quantity 자리수 설정
                         client = r_Client(api_key=api_key, api_secret=secret)
@@ -493,8 +493,8 @@ while True:
                     globals()['current_price_sell_{}'.format(n)] = client.futures_symbol_ticker(symbol=globals()['buycoin_sell_{}'.format(n)])
                     globals()['current_price_sell_{}'.format(n)] = float(globals()['current_price_sell_{}'.format(n)]['price'])
                     
-####################1퍼 익절(숏)####################
-                    if ((float(globals()['water_buy_price_sell_{}'.format(n)]) * 0.99) > globals()['current_price_sell_{}'.format(n)]) :
+####################2퍼 익절(숏)####################
+                    if ((float(globals()['water_buy_price_sell_{}'.format(n)]) * 0.98) > globals()['current_price_sell_{}'.format(n)]) :
 
                         #quantity 자리수 설정
                         client = r_Client(api_key=api_key, api_secret=secret)
